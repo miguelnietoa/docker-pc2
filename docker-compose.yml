@@ -10,15 +10,19 @@ services:
         ports:
             - 5432:5432
     jupyter:
-        container_name: jupyter
         build: './jupyter'
+        depends_on:
+            - postgresdb
+        container_name: jupyter
         volumes:
             - './jupyter:/var/lib/jupyter'
         ports:
             - 8888:8888
     dash:
-        container_name: dash
         build: './dash'
+        depends_on:
+            - postgresdb
+        container_name: dash
         volumes:
             - './dash:/var/lib/dash'
         ports:
