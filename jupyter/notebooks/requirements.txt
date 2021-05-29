@@ -1,7 +1,5 @@
 notebook
 numpy
 pandas
-matplotlib
-seaborn
 psycopg2-binary
 plotly

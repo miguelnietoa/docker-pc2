@@ -4,25 +4,25 @@
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
-import plotly.express as px
 import pandas as pd
+import pandas.io.sql as psql
+import psycopg2
+import plotly.express as px
 
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
-
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
-df = pd.read_csv('https://gist.githubusercontent.com/chriddyp/5d1ea79569ed194d432e56108a04d188/raw/a9f9e8076b837d541398e999dcbac2b2826a81f8/gdp-life-exp-2007.csv')
-
-fig = px.scatter(df, x="gdp per capita", y="life expectancy",
-                 size="population", color="continent", hover_name="country",
-                 log_x=True, size_max=60)
+#establishing the connection
+conn = psycopg2.connect(
+   database='indian_prison_db', user='postgres', password='sa123456', host='postgresdb', port='5432'
+)
+df = psql.read_sql('SELECT * FROM indian_prison', conn, index_col='id')
+conn.close()
 
 app.layout = html.Div([
-    dcc.Graph(
-        id='life-exp-vs-gdp',
-        figure=fig
-    )
+    html.H1('Hi')
+
 ])
 
 if __name__ == '__main__':
