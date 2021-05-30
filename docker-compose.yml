@@ -12,7 +12,8 @@ services:
     jupyter:
         build: './jupyter'
         depends_on:
-            - postgresdb
+            postgresdb: 
+                condition: service_started
         container_name: jupyter
         volumes:
             - './jupyter/notebooks:/notebooks'
@@ -21,7 +22,8 @@ services:
     dash:
         build: './dash'
         depends_on:
-            - postgresdb
+            postgresdb: 
+                condition: service_started
         container_name: dash
         volumes:
             - './dash/src:/src'
