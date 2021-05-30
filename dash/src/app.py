@@ -11,11 +11,9 @@ import pandas.io.sql as psql
 import plotly.express as px
 import plotly.graph_objects as go
 
-
+print("arriba")
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
-mathjax = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML'
-app.scripts.append_script({ 'external_url' : mathjax })
 #establishing the connection
 conn = psycopg2.connect(
    database='indian_prison_db', user='postgres', password='sa123456', host='postgresdb', port='5432'
@@ -105,4 +103,5 @@ def create_chart4(id):
 
 
 if __name__ == '__main__':
+    print("main")
     app.run_server(debug=True, host='0.0.0.0')
