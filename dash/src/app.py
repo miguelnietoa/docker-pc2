@@ -30,7 +30,8 @@ df = psql.read_sql('SELECT * FROM indian_prison', conn, index_col='id')
 conn.close()
 
 app.layout = html.Div([
-    html.H2('Chart1'),
+    html.H3('Visualización de Datos del dataset indian_prison, que contiene información sobre la población de prisioneros en la India de los años 2001 al 2013.'),
+    html.H5('Cantidad de personas en prisión por motivo y sexo'),
     html.Div([
         dcc.Graph(id='chart1'),
         dcc.Markdown('''La mayoría de personas en prisión son del sexo másculino. Además, se puede visualizar la gran diferencia existente si se ven los casos de *Bajo juicio* y *Convictos* frente a *Detenidos* y *Otras razones*, teniendo los primeros una cantidad superior. Cabe resaltar que la mayoría de personas están bajo juicio, lo que puede dar posibilidad a que la cantidad de personas en prisión reduzcan dependiendo del resultado del juicio.
@@ -38,18 +39,18 @@ app.layout = html.Div([
 **NOTA**: Tener en cuenta que los valores del eje *y* están a una escala de *1M = 10^6*.'''),
     ]),
 
-    html.H2('Chart2'),
+    html.H5('Evolución del número de personas en prisión por año para cada motivo'),
     html.Div([
         dcc.Graph(id='chart2'),
         dcc.Markdown('''La cantidad de personas detenidas (*total_detenues*) en prisión ha mantenido un comportamiento constante a lo largo de los años mostrados [2001-2013], mientras que la cantidad de personas bajo juicio (*total_under_trial*) no siempre aumentan o disminuyen, es decir, su comportamiento es inestable, sin embargo, la tendencia general es ascendente pasando de tener aprox. 441634 personas en 2001 a 557000 en el año 2013. Por otro lado, la cantidad de personas que se encuentran en la carcel bajo otras razones (*total_others*) ha estado disminuyendo paulatinamente.'''),
     ]),
 
-    html.H2('Chart3'),
+    html.H5('Evolución del número de personas en prisión por año con el código de color del estado'),
     html.Div([
         dcc.Graph(id='chart3'),
         dcc.Markdown('''La tendencia general de la cantidad de personas en prisión es ascendente, aunque se puede notar que en el periodo del 2008 al 2010 se redujo el número de prisioneros en India. Otra información importante es que la mayor cantidad de esta población se ubica en el estado llamado **Uttar Pradesh**.'''),
     ]),
-    html.H2('Chart4'),
+    html.H5('Diagrama circular de la distribución de personas en prisión por tipo de institución'),
     html.Div([
         dcc.Graph(id='chart4'),
         dcc.Markdown('''Gracias a este gráfico es posible observar que la mayoría de personas en prisión están en los tipos de insticiones "Central Jail" y "District Jail". La diferencia que tienen estos dos contra el resto es bastante amplia.''')
